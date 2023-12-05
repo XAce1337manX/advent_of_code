@@ -5,9 +5,16 @@ import 'package:advent_of_code/2023/day_4/day_4.dart';
 import 'package:advent_of_code/2023/day_5/day_5.dart';
 
 Future<void> main() async {
-  var day1 = Day5();
+  var day = Day5();
   print("Day 5");
-  print(await day1.solve(isPart2: false));
-  print("");
-  print(await day1.solve(isPart2: true));
+  var stopwatch = Stopwatch()..start();
+
+  print(await day.solve(isPart2: false));
+  print("Part 1 took ${stopwatch.elapsedMilliseconds}ms\n");
+
+  stopwatch.reset();
+  stopwatch.start();
+
+  print(await day.solve(isPart2: true));
+  print("Part 2 took ${stopwatch.elapsedMilliseconds}ms\n");
 }

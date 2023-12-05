@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:collection/collection.dart';
 
@@ -26,6 +25,44 @@ class Day5 {
       seedMaps.containsKey(mapIndex)
           ? seedMaps[mapIndex]!.add(_SeedMap(line))
           : seedMaps[mapIndex] = [_SeedMap(line)];
+    }
+
+    // Naively bruting force part 1 solution for part 2 didn't
+    // work but what if I did the map in reverse instead?
+    if (isPart2) {
+      var seedPairs = <({int startSeedRange, int lengthSeedRange})>[];
+      for (var i = 0; i < seeds.length; i += 2) {
+        var startSeedRange = seeds[i];
+        var lengthSeedRange = seeds[i + 1];
+
+        seedPairs.add((startSeedRange: startSeedRange, lengthSeedRange: lengthSeedRange));
+      }
+
+      var lowestTestedlocation = 0;
+      // This is an upper bound given by part 1
+      while (lowestTestedlocation < 500000000) {
+        var location = lowestTestedlocation;
+        for (var i = seedMaps.length - 1; i >= 0; i--) {
+          for (var seedMap in seedMaps[i]!) {
+            if ((seedMap.destinationRangeStart <= location &&
+                location < seedMap.destinationRangeStart + seedMap.rangeLength)) {
+              location += seedMap.sourceRangeStart - seedMap.destinationRangeStart;
+              break;
+            }
+          }
+        }
+
+        for (var seedPair in seedPairs) {
+          if (seedPair.startSeedRange <= location &&
+              location < seedPair.startSeedRange + seedPair.lengthSeedRange) {
+            return lowestTestedlocation;
+          }
+        }
+
+        lowestTestedlocation++;
+      }
+
+      return -1; // Welp it didn't work.
     }
 
     var locations = <int>[];
