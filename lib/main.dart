@@ -9,10 +9,11 @@ import 'package:advent_of_code/2023/day_8/day_8.dart';
 import 'package:advent_of_code/2023/day_9/day_9.dart';
 import 'package:advent_of_code/2023/day_10/day_10.dart';
 import 'package:advent_of_code/2023/day_11/day_11.dart';
+import 'package:advent_of_code/2023/day_12/day_12.dart';
 
 Future<void> main() async {
-  var day = Day11();
-  print("Day 11");
+  var day = Day12();
+  print("Day 12");
   var stopwatch = Stopwatch()..start();
 
   print(await day.solve(isPart2: false));
