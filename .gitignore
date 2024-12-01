@@ -59,3 +59,7 @@ app.*.map.json
 
 # Don't commit puzzle examples and inputs
 *.txt
+
+# Some C# stuff
+advent_of_code/advent_of_code_2024/bin
+advent_of_code/advent_of_code_2024/obj
