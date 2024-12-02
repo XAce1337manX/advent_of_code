@@ -61,5 +61,5 @@ app.*.map.json
 *.txt
 
 # Some C# stuff
-advent_of_code/advent_of_code_2024/bin
-advent_of_code/advent_of_code_2024/obj
+advent_of_code_2024/bin
+advent_of_code_2024/obj
