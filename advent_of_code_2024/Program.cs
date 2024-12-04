@@ -8,3 +8,6 @@ Day02.Solve("input2.txt");
 
 Console.WriteLine("Day 3");
 Day03.Solve("input3.txt");
+
+Console.WriteLine("Day 4");
+Day04.Solve("input4.txt");
