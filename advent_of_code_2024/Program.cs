@@ -20,3 +20,6 @@ Day06.Solve("input6.txt");
 
 Console.WriteLine("Day 7");
 Day07.Solve("input7.txt");
+
+Console.WriteLine("Day 8");
+Day08.Solve("input8.txt");
