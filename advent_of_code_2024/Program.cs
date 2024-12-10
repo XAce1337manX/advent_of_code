@@ -26,3 +26,6 @@ Day08.Solve("input8.txt");
 
 Console.WriteLine("Day 9");
 Day09.Solve("input9.txt");
+
+Console.WriteLine("Day 10");
+Day10.Solve("input10.txt");
