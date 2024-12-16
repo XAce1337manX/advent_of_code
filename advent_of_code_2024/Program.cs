@@ -44,3 +44,6 @@ Day14.Solve("input14.txt");
 
 Console.WriteLine("Day 15");
 Day15.Solve("input15.txt");
+
+Console.WriteLine("Day 16");
+Day16.Solve("input16.txt");
