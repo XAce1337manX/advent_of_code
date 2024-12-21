@@ -52,4 +52,7 @@ Console.WriteLine("Day 17");
 Day17.Solve("input17.txt");
 
 Console.WriteLine("Day 18");
-Day18.Solve("input18d.txt");
+Day18.Solve("input18.txt");
+
+Console.WriteLine("Day 19");
+Day19.Solve("input19d.txt");
