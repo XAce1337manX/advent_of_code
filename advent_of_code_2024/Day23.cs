@@ -51,8 +51,27 @@ public static class Day23
         }
         
         var partOneTotal = triCycles.Count(x => x.Any(v => v.Name.StartsWith($"t")));
+
+        var maximalCliques = new List<HashSet<Vertex>>();
+        foreach (var vertex in graph.Values)
+        {
+            var clique = new HashSet<Vertex> { vertex };
+
+            foreach (var neighbour in vertex.Neighbours)
+            {
+                if (clique.All(c => neighbour.Neighbours.Contains(c)))
+                {
+                    clique.Add(neighbour);
+                }
+            }
+            
+            maximalCliques.Add(clique);
+        }
+
+        var maximumClique = maximalCliques.MaxBy(c => c.Count);
+        var partTwoTotal = string.Join(',', maximumClique!.Select(v => v.Name).OrderBy(n => n));
         
         Console.WriteLine($"Part One: {partOneTotal}");
-        // Console.WriteLine($"Part Two: {partTwoTotal}");
+        Console.WriteLine($"Part Two: {partTwoTotal}");
     }
 }
