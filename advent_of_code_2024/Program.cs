@@ -63,8 +63,14 @@ Day20.Solve("input20.txt");
 // Console.WriteLine("Day 21");
 // Day21.Solve("input21.txt");
 
-// Console.WriteLine("Day 22");
-// Day22.Solve("input22.txt");
+Console.WriteLine("Day 22");
+Day22.Solve("input22.txt");
 
 Console.WriteLine("Day 23");
 Day23.Solve("input23.txt");
+//
+// Console.WriteLine("Day 24");
+// Day24.Solve("input24.txt");
+
+Console.WriteLine("Day 25");
+Day25.Solve("input25.txt");
