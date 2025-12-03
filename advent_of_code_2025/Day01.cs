@@ -8,7 +8,8 @@ public static class Day01
     {
         var input = File.ReadAllLines(inputFile);
 
-        var zeroDialCount = 0;
+        var zeroDialCountP1 = 0;
+        var zeroDialCountP2 = 0;
         var dialPosition = 50;
         foreach (var line in input)
         {
@@ -16,25 +17,33 @@ public static class Day01
 
             var turnAmount = int.Parse(line[1..]);
 
+            var currentPosition = dialPosition;
+            var nextPosition = rightDirection
+                ? dialPosition + turnAmount
+                : dialPosition - turnAmount;
+
+            dialPosition = (nextPosition + DialLength) % DialLength;
+
+            // P1 - Lands on 0
+            if (dialPosition == 0)
+            {
+                zeroDialCountP1++;
+            }
+
+            // P2 - Everytime it passes or lands on 0
             if (rightDirection)
             {
-                dialPosition += turnAmount;
+                zeroDialCountP2 += Math.Abs((int)Math.Floor(nextPosition / (double)DialLength)
+                                            - (int)Math.Floor(currentPosition / (double)DialLength));
             }
             else
             {
-                dialPosition -= turnAmount;
+                zeroDialCountP2 += Math.Abs((int)Math.Ceiling(nextPosition / (double)DialLength)
+                                            - (int)Math.Ceiling(currentPosition / (double)DialLength));
             }
-
-            dialPosition = (dialPosition + DialLength) % DialLength;
-
-            if (dialPosition == 0)
-            {
-                zeroDialCount++;
-            }
-            
-            //Console.WriteLine(dialPosition);
         }
 
-        Console.WriteLine($"Day 1 - Part 1: {zeroDialCount}");
+        Console.WriteLine($"Day 1 - Part 1: {zeroDialCountP1}");
+        Console.WriteLine($"Day 2 - Part 2: {zeroDialCountP2}");
     }
 }
