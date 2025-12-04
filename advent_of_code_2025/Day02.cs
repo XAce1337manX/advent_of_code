@@ -1,4 +1,6 @@
-﻿namespace advent_of_code_2025;
+﻿using System.Text.RegularExpressions;
+
+namespace advent_of_code_2025;
 
 public static class Day02
 {
@@ -9,6 +11,7 @@ public static class Day02
         var ranges = input[0].Split(',');
 
         var partOneTotal = 0L;
+        var partTwoTotal = 0L;
         foreach (var range in ranges)
         {
             var idRanges = range.Split('-');
@@ -18,6 +21,11 @@ public static class Day02
 
             for (var id = start; id <= end; id++)
             {
+                // Well regex is way easier for part 2
+                // Part One can be done with ^((\d)+)\1{1}$
+                var match = Regex.Match(id.ToString(), @"^((\d)+)\1+$");
+                if (match.Success) partTwoTotal += long.Parse(match.Value);
+                
                 var digits = (long)Math.Round(Math.Floor(Math.Log10(id) + 1));
 
                 // Odd is automatically valid
@@ -40,5 +48,6 @@ public static class Day02
         }
         
         Console.WriteLine($"Day 2 - Part 1: {partOneTotal}");
+        Console.WriteLine($"Day 2 - Part 2: {partTwoTotal}");
     }
 }
