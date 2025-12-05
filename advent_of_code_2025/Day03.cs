@@ -5,39 +5,43 @@ public static class Day03
     public static void Solve(string inputFile)
     {
         var input = File.ReadAllLines(inputFile);
+        
+        Console.WriteLine($"Day 2 - Part 1: {ComputeForBatteryLimit(input, 2)}");
+        Console.WriteLine($"Day 2 - Part 2: {ComputeForBatteryLimit(input, 12)}");
+    }
 
-        var partOneTotal = 0;
+    private static long ComputeForBatteryLimit(string[] input, int batteryLimit)
+    {
+        var total = 0L;
         
         foreach (var bank in input)
         {
-            var leftMax = '0';
-            var rightMax = '0';
-            for (var i = 0; i < bank.Length - 1; i++)
+            var indexes = new List<int>();
+            var offset = 0;
+            for (var i = batteryLimit; i > 0; i--)
             {
-                var leftBattery = bank[i];
-                if (leftBattery <= leftMax)
-                {            
-                    continue;
-                }
-                
-                leftMax = leftBattery;
-
-                rightMax = '0';
-                for (var j = i + 1; j < bank.Length; j++)
+                var maxChar = '0';
+                // Console.WriteLine($"Looking at {new string(' ',offset)}{bank[offset..^i]}");
+                for (var j = offset; j <= bank.Length - i; j++)
                 {
-                    var rightBattery = bank[j];
-                    if (rightMax < rightBattery)
+                    if (maxChar < bank[j])
                     {
-                        rightMax = rightBattery;
+                        maxChar = bank[j];
                     }
                 }
+                
+                var index = bank[offset..].IndexOf(maxChar) + offset;
+                
+                // Console.WriteLine($"{maxChar}->{index}");
+                indexes.Add(index);
+                offset = index + 1;
             }
 
-            Console.WriteLine($"J {leftMax}-{rightMax}");
-            var joltage = int.Parse($"{leftMax}{rightMax}");
-            partOneTotal += joltage;
+            var joltage = indexes.Aggregate("", (current, i) => current + bank[i]);
+
+            total += long.Parse(joltage);
         }
-        
-        Console.WriteLine($"Day 2 - Part 1: {partOneTotal}");
+
+        return total;
     }
 }
